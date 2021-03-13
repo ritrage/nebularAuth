@@ -9,13 +9,15 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NbAuthModule, NbOAuth2AuthStrategy } from '@nebular/auth';
+import { NbAuthModule, NbAuthOAuth2Token, NbOAuth2AuthStrategy, NbOAuth2ResponseType } from '@nebular/auth';
+import { CallbackComponent } from './callback/callback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    CallbackComponent
   ],
   imports: [
     HttpClientModule,
@@ -30,10 +32,17 @@ import { NbAuthModule, NbOAuth2AuthStrategy } from '@nebular/auth';
     NbAuthModule.forRoot({
       strategies: [
         NbOAuth2AuthStrategy.setup({
-          name: 'oauth',
-          clientId: 'abcd',
+          name: 'google',
+          clientId: '529783305538-d3fpqok16gi33m6j6douasanfl0hcmu2.apps.googleusercontent.com',
+          clientSecret:'',
+          authorize: {
+            endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
+            responseType: NbOAuth2ResponseType.TOKEN,
+            scope: 'https://www.googleapis.com/auth/userinfo.profile',
+            redirectUri: 'http://localhost:4200/callback',
+          },
           redirect: {
-            success: '/welcome/', // welcome page path
+            success: '/profile/', // welcome page path
             failure: '/login/', // stay on the same page
           },
         }),
