@@ -6,9 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  items=[
-    {title:"profile"},
-    {title: "logout"}
-  ];
   title = 'nebularAuth';
 }
