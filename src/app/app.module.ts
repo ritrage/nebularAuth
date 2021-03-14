@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NbAuthModule, NbAuthOAuth2Token, NbOAuth2AuthStrategy, NbOAuth2ResponseType } from '@nebular/auth';
 import { CallbackComponent } from './callback/callback.component';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { CallbackComponent } from './callback/callback.component';
           authorize: {
             endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
             responseType: NbOAuth2ResponseType.TOKEN,
-            scope: 'https://www.googleapis.com/auth/userinfo.profile',
+            scope: 'profile',
             redirectUri: 'http://localhost:4200/callback',
           },
           redirect: {
@@ -50,7 +51,9 @@ import { CallbackComponent } from './callback/callback.component';
       forms: {},
     }), 
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

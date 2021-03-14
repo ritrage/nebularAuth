@@ -20,8 +20,8 @@ export class CallbackComponent implements OnDestroy {
     this.authService.authenticate('google')
       .pipe(takeUntil(this.destroy$))
       .subscribe((authResult: NbAuthResult) => {
-        if (authResult.isSuccess() && authResult.getRedirect()) {
-          this.router.navigateByUrl(authResult.getRedirect());
+        if (authResult.isSuccess()) {
+          this.router.navigateByUrl('/profile');
         }
       });
   }
