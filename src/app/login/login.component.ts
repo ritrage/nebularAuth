@@ -11,15 +11,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnDestroy {
 
-  // userPass:any;
-  // userMail:any;
-  // token:any;
-  // constructor(private authService: NbAuthService,@Inject(NB_AUTH_OPTIONS) options: {},cd: ChangeDetectorRef, router: Router) {
-  //   // super(service,options,cd, router);
-  // }
-
-  // alive = true;
-
   token: any;
 
   user = {};
@@ -38,26 +29,6 @@ export class LoginComponent implements OnDestroy {
 
     });
   }
-
-  // login() {
-  //   this.authService.authenticate('google')
-  //     .pipe(takeWhile(() => this.alive))
-  //     .subscribe((authResult: NbAuthResult) => {
-  //       console.log(authResult.getToken);
-  //       this.token= authResult.getToken;
-  //     });
-  // }
-
-  // logout() {
-  //   this.authService.logout('google').pipe(takeWhile(()=>this.alive)).subscribe((authResult: NbAuthResult) => {
-
-  //   })
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.alive = false;
-  // }
-
   login() {
     this.authService.authenticate('google')
       .pipe(takeUntil(this.destroy$))

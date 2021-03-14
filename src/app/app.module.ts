@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbButtonModule, NbCardModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbButtonModule, NbCardModule, NbUserModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -21,6 +21,8 @@ import { AuthGuard } from './auth-guard.service';
     CallbackComponent
   ],
   imports: [
+    NbCardModule,
+    NbUserModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

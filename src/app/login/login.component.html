@@ -2,7 +2,6 @@
     <nb-card-header *ngIf="!token" class="example-items-rows">Please Login to Continue</nb-card-header>
     <nb-card-header *ngIf="token" class="example-items-rows">Your are already logged in</nb-card-header>
     <nb-card-body class="example-items-rows" fixed>
-        <!-- <button class="btn btn-success" *ngIf="!token" (click)="login()">Sign In with Google</button> -->
       <button nbButton outline status="success" *ngIf="!token" (click)="login()" >Login</button>
       <button nbButton outline status="success" *ngIf="token" (click)="logout()"> Logout</button>
     </nb-card-body>

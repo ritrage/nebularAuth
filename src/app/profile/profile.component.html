@@ -1,1 +1,22 @@
-<p>profile works!</p>
+<nb-layout-header fixed>
+    <button outline nbButton (click)="logout()">
+        Logout
+    </button>
+</nb-layout-header>
+
+<nb-layout-column class="body">
+  <nb-card status="success">
+    <nb-card-header>Profile Information</nb-card-header>
+    <nb-card-body>
+        <nb-user size="large"
+                picture={{user.picture}}
+                name={{user.name}}>
+        </nb-user>
+    </nb-card-body>
+    <nb-card-footer>User Id: {{user.id}}</nb-card-footer>
+    <nb-card-footer>First Name: {{user.given_name}}</nb-card-footer>
+    <nb-card-footer>Family Name: {{user.family_name}}</nb-card-footer>
+    <nb-card-footer>Locale: {{user.locale}}</nb-card-footer>
+
+  </nb-card>
+</nb-layout-column>

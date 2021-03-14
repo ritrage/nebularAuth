@@ -8,36 +8,27 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
-//   template:`
-//   <nb-layout-header fixed>
-//     <nb-user [name]="user.name" [picture]="user.picture"></nb-user>
-// </nb-layout-header>
-//   `,
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
   token: any;
-  user = {};
-  userInfo ={};
+  user:any=[];
   authentication = 'Bearer ';
 
   private destroy$ = new Subject<void>();
 
-  constructor(private authService: NbAuthService, private http: HttpClient) {
+  constructor(private authService: NbAuthService, private http: HttpClient, private router: Router) {
     this.authService.onTokenChange().pipe(takeUntil(this.destroy$)).subscribe((token : NbAuthToken)=>{
-      
-      console.log('token is : '+token + "\n"+token.getName()+"\n"+token.getPayload()+"\n"+token.getValue());
       this.authentication = 'Bearer '+token.getValue();
-      this.http.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json",{headers: new HttpHeaders().set('Authorization', this.authentication)}).subscribe(data => {
-        this.user = data;
-        console.log(data);
+      this.http.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json",{headers: new HttpHeaders().set('Authorization', this.authentication)}).subscribe(res => {
+        this.user = res;
+        console.log(this.user);
       });
 
       if(token && token.isValid()) {
         this.token = token;
       }
-      console.log('user is : '+ this.user);
 
     });
   }
@@ -47,6 +38,7 @@ export class ProfileComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((authResult: NbAuthResult) => {
       });
+      this.router.navigateByUrl('');
   }
   
   ngOnInit(): void {
