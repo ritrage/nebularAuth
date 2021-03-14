@@ -42,7 +42,7 @@ import { AuthGuard } from './auth-guard.service';
             endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
             responseType: NbOAuth2ResponseType.TOKEN,
             scope: 'profile',
-            redirectUri: 'http://localhost:4200/callback',
+            redirectUri: 'https://parigkkgg.github.stackblitz.io/callback',
           },
           redirect: {
             success: '/profile/', // welcome page path
